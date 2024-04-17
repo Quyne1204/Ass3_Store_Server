@@ -9,16 +9,17 @@ const bodyParser = require('body-parser');
 const auth = require("./route/auth");
 const product = require("./route/product");
 const order = require("./route/order");
-const admin = require("./route/admin"); 
+const admin = require("./route/admin");
 
 const app = express();
 dotenv.config();
 
-const corsOptions = {
-  origin: "https://store-client-b886c.web.app",
-};
-
-app.use(cors(corsOptions));
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', 'https://store-client-b886c.web.app');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+});
 
 // app.use(cors("https://store-client-b886c.web.app/"));
 
