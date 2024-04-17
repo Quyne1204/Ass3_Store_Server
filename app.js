@@ -23,10 +23,12 @@ app.use('/product', product);
 app.use('/order', order);
 app.use('/admin', admin);
 
+const port = process.env.PORT || 4000;
+
 
 
 mongoose.connect(process.env.MONGO_DB)
     .then(result => {
-        app.listen(process.env.PORT);
+        app.listen(port);
     })
     .catch(err => console.log(err));
