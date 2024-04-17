@@ -1,7 +1,6 @@
 const Order = require("../model/order");
 const User = require("../model/user");
 const nodemailer = require("nodemailer");
-const sendgridTransport = require("nodemailer-sendgrid-transport")
 
 const fs = require('fs');
 const path = require('path');
@@ -60,7 +59,7 @@ exports.checkOut = async (req, res, next) => {
             },
         });
 
-        User.findByIdAndUpdate(
+        await User.findByIdAndUpdate(
             { _id: req.body.id },
             {
                 $set: {

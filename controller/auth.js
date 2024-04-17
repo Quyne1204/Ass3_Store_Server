@@ -6,21 +6,17 @@ exports.postRegister = async (req, res, next) => {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(req.body.password, salt);
 
-    const checkUserName = await User.findOne({ username: req.body.username });
     const checkEmail = await User.findOne({ email: req.body.email });
     const checkPhone = await User.findOne({ phoneNumber: req.body.phoneNumber });
 
     const error = {};
-    if (checkUserName) {
-        error.username = "Username exists";
-    }
     if (checkEmail) {
         error.email = "Email exists";
     }
     if (checkPhone) {
         error.phone = "Phone exists";
     }
-    if (checkEmail || checkUserName || checkPhone) {
+    if (checkEmail || checkPhone) {
         return res.status(400).json({error:error});
     }
     // console.log(req.body);
