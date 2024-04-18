@@ -9,7 +9,7 @@ exports.postRegister = async (req, res, next) => {
     const checkEmail = await User.findOne({ email: req.body.email });
     const checkPhone = await User.findOne({ phoneNumber: req.body.phoneNumber });
 
-    console.log(req.body);
+    // console.log(req.body);
     const error = {};
     if (checkEmail) {
         error.email = "Email exists";
