@@ -17,10 +17,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(cors({
-    origin: '*',
+    origin: /\.onrender\.com$/,
     methods: 'GET,POST,PUT,PATCH,DELETE',
     allowedHeaders: 'Content-Type, Authorization'
-  }));
+}));
 
 app.use('/auth', auth);
 app.use('/product', product);
